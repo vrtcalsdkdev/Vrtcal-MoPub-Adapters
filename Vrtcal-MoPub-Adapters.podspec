@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
                   LICENSE
                 }
     s.author       = { "Scott McCoy" => "scott.mccoy@vrtcal.com" }
-    s.source       = { :git => "https://github.vrtcal.com/scott/Vrtcal-MoPub-Adapters.git", :tag => "#{s.version}" }
+    s.source       = { :git => "https://github.com/vrtcalsdkdev/Vrtcal-MoPub-Adapters.git", :tag => "#{s.version}" }
     s.source_files = "*.{h,m}"
     s.platform = :ios
     s.ios.deployment_target  = '11.0'
