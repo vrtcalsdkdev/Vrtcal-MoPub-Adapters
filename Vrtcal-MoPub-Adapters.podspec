@@ -9,8 +9,10 @@ Pod::Spec.new do |s|
                 }
     s.author       = { "Scott McCoy" => "scott.mccoy@vrtcal.com" }
     s.source       = { :git => "https://github.vrtcal.com/scott/Vrtcal-MoPub-Adapters.git", :tag => "1.0" }
-    s.public_header_files = "*.h"
-    s.source_files = "*.m"
+    s.source_files = "*.{h,m}"
     s.platform = :ios
     s.ios.deployment_target  = '11.0'
+
+    s.dependency 'mopub-ios-sdk'
+    s.dependency 'VrtcalSDK'
 end

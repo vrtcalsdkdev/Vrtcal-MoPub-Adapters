@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "MPInterstitialCustomEvent.h"
+@import MoPub;
 
 #import <VrtcalSDK/VrtcalSDK.h>
 
