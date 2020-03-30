@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "Vrtcal-MoPub-Adapters"
-    s.version      = "1.0.2"
+    s.version      = "0.0.1"
     s.summary      = "Allows mediation with Vrtcal as either the primary or secondary SDK"
     s.homepage     = "http://vrtcal.com"
     s.license = { :type => 'Copyright', :text => <<-LICENSE
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
     s.source       = { :git => "https://github.com/vrtcalsdkdev/Vrtcal-MoPub-Adapters.git", :tag => "#{s.version}" }
     s.source_files = "*.{h,m}"
     s.platform = :ios
-    s.ios.deployment_target  = '11.0'
+    s.ios.deployment_target  = '9.0'
 
     s.dependency 'mopub-ios-sdk'
     s.dependency 'VrtcalSDK'
