@@ -24,9 +24,7 @@
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController {
     self.viewControllerForModalPresentation = rootViewController;
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.vrtInterstitial showAd];
-    });
+    [self.vrtInterstitial showAd];
 }
 
 #pragma mark - VRTInterstitialDelegate
@@ -47,9 +45,7 @@
 }
 
 - (void)vrtInterstitialAdLoaded:(nonnull VRTInterstitial *)vrtInterstitial {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate interstitialCustomEvent:self didLoadAd:vrtInterstitial];
-    });
+    [self.delegate interstitialCustomEvent:self didLoadAd:vrtInterstitial];
 }
 
 - (void)vrtInterstitialAdShown:(nonnull VRTInterstitial *)vrtInterstitial {
