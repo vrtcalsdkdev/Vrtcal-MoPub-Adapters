@@ -6,6 +6,10 @@
 
 @implementation VRTMPInterstitialCustomEvent
 
+- (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup {
+    [self requestInterstitialWithCustomEventInfo:info];
+}
+
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info {
     NSString *strZoneId = info[@"zid"];
     int zoneId = [strZoneId intValue];
@@ -24,7 +28,9 @@
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController {
     self.viewControllerForModalPresentation = rootViewController;
     
-    [self.vrtInterstitial showAd];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.vrtInterstitial showAd];
+    });
 }
 
 #pragma mark - VRTInterstitialDelegate
@@ -45,7 +51,9 @@
 }
 
 - (void)vrtInterstitialAdLoaded:(nonnull VRTInterstitial *)vrtInterstitial {
-    [self.delegate interstitialCustomEvent:self didLoadAd:vrtInterstitial];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate interstitialCustomEvent:self didLoadAd:vrtInterstitial];
+    });
 }
 
 - (void)vrtInterstitialAdShown:(nonnull VRTInterstitial *)vrtInterstitial {

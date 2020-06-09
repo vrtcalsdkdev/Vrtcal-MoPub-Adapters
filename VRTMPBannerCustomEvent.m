@@ -2,6 +2,10 @@
 
 @implementation VRTMPBannerCustomEvent
 
+- (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup {
+    [self requestAdWithSize:size customEventInfo:info];
+}
+
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info {
     NSString *strZoneId = info[@"zid"];
     int zoneId = [strZoneId intValue];
