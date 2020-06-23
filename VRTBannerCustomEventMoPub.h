@@ -7,5 +7,6 @@
 
 #import <VrtcalSDK/VrtcalSDK.h>
 
+//MoPub Banner Adapter, Vrtcal as Primary
 @interface VRTBannerCustomEventMoPub : VRTAbstractBannerCustomEvent
 @end

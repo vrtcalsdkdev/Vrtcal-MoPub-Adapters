@@ -14,12 +14,12 @@
 @property MPAdView *mpAdView;
 @end
 
-
+//MoPub Banner Adapter, Vrtcal as Primary
 @implementation VRTBannerCustomEventMoPub
 
 - (void) loadBannerAd {
     NSString *moPubAdUnitId = [self.customEventConfig.thirdPartyCustomEventData objectForKey:@"adUnitId"];
-    self.mpAdView = [[MPAdView alloc] initWithAdUnitId:moPubAdUnitId size:self.customEventConfig.adSize];
+    self.mpAdView = [[MPAdView alloc] initWithAdUnitId:moPubAdUnitId];
     self.mpAdView.delegate = self;
     [self.mpAdView loadAd];
 }
@@ -49,10 +49,11 @@
  *
  * @param view The ad view sending the message.
  */
-- (void)adViewDidLoadAd:(MPAdView *)view {
+-(void)adViewDidLoadAd:(MPAdView *)view adSize:(CGSize)adSize {
     VRTLogWhereAmI();
-    [self.customEventLoadDelegate adLoaded];
+    [self.customEventLoadDelegate customEventLoaded];
 }
+
 
 /**
  * Sent when an ad view fails to load an ad.
@@ -64,7 +65,7 @@
  */
 - (void)adView:(MPAdView *)view didFailToLoadAdWithError:(NSError *)error {
     VRTLogWhereAmI();
-    [self.customEventLoadDelegate adFailedToLoadWithError:error];
+    [self.customEventLoadDelegate customEventFailedToLoadWithError:error];
 }
 
 /**
@@ -77,7 +78,7 @@
  * @see `didDismissModalViewForAd:`
  */
 - (void)willPresentModalViewForAd:(MPAdView *)view {
-    [self.customEventShowDelegate adClicked];
+    [self.customEventShowDelegate customEventClicked];
 }
 
 /**

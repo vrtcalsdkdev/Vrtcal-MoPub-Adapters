@@ -10,6 +10,7 @@
 
 #import "MPInterstitialAdController.h"
 
+//MoPub Interstitial Adapter, Vrtcal as Primary
 @interface VRTInterstitialCustomEventMoPub() <MPInterstitialAdControllerDelegate>
 @property MPInterstitialAdController *mpIntersatitialAdController;
 @end
@@ -32,30 +33,32 @@
 #pragma mark - MPAdViewDelegate
 - (void)interstitialDidLoadAd:(MPInterstitialAdController *)interstitial {
     VRTLogWhereAmI();
-    [self.customEventLoadDelegate adLoaded];
+    [self.customEventLoadDelegate customEventLoaded];
 }
 
 - (void)interstitialDidFailToLoadAd:(MPInterstitialAdController *)interstitial withError:(NSError *)error {
     VRTLogWhereAmI();
-    [self.customEventLoadDelegate adFailedToLoadWithError:error];
+    [self.customEventLoadDelegate customEventFailedToLoadWithError:error];
 }
 
 - (void)interstitialWillAppear:(MPInterstitialAdController *)interstitial {
     VRTLogWhereAmI();
+    [self.customEventShowDelegate customEventWillPresentModal:VRTModalTypeInterstitial];
 }
 
 - (void)interstitialDidAppear:(MPInterstitialAdController *)interstitial {
     VRTLogWhereAmI();
-    [self.customEventShowDelegate adShown];
+    [self.customEventShowDelegate customEventShown];
 }
 
 - (void)interstitialWillDisappear:(MPInterstitialAdController *)interstitial {
     VRTLogWhereAmI();
+    [self.customEventShowDelegate customEventWillDismissModal:VRTModalTypeInterstitial];
 }
 
 - (void)interstitialDidDisappear:(MPInterstitialAdController *)interstitial {
     VRTLogWhereAmI();
-    [self.customEventShowDelegate adDismissed];
+    [self.customEventShowDelegate customEventDidDismissModal:VRTModalTypeInterstitial];
 }
 
 - (void)interstitialDidExpire:(MPInterstitialAdController *)interstitial {
@@ -64,7 +67,7 @@
 
 - (void)interstitialDidReceiveTapEvent:(MPInterstitialAdController *)interstitial {
     VRTLogWhereAmI();
-    [self.customEventShowDelegate adClicked];
+    [self.customEventShowDelegate customEventClicked];
 }
 
 

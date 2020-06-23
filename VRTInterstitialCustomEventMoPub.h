@@ -7,5 +7,6 @@
 
 #import <VrtcalSDK/VrtcalSDK.h>
 
+//MoPub Interstitial Adapter, Vrtcal as Primary
 @interface VRTInterstitialCustomEventMoPub : VRTAbstractInterstitialCustomEvent
 @end

@@ -9,7 +9,7 @@
 #import "MPBannerCustomEvent.h"
 #endif
 
-
+//MoPub Banner Adapter, Vrtcal as Secondary
 @interface VRTMPBannerCustomEvent : MPBannerCustomEvent <VRTBannerDelegate>
 @property (strong, nonatomic) VRTBanner *vrtBanner;
 @end

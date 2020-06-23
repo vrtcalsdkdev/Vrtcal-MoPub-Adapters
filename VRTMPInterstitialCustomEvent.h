@@ -9,7 +9,7 @@
 #import "MPInterstitialCustomEvent.h"
 #endif
 
-
+//MoPub Interstitial Adapter, Vrtcal as Secondary
 @interface VRTMPInterstitialCustomEvent : MPInterstitialCustomEvent <VRTInterstitialDelegate>
 @property (strong, nonatomic) VRTInterstitial *vrtInterstitial;
 @end
