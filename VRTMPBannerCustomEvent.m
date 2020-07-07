@@ -1,20 +1,25 @@
+//MoPub Banner Adapter, Vrtcal as Secondary
+
+//Header
 #import "VRTMPBannerCustomEvent.h"
 
-//MoPub Banner Adapter, Vrtcal as Secondary
+
+@interface VRTMPBannerCustomEvent() <VRTBannerDelegate>
+@property (strong, nonatomic) VRTBanner *vrtBanner;
+@end
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-protocol-property-synthesis"
 @implementation VRTMPBannerCustomEvent
+#pragma clang diagnostic pop
 
-
-- (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info {
-    [self requestAdWithSize:size customEventInfo:info adMarkup:nil];
-}
-
-- (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup {
+-(void) requestAdWithSize:(CGSize)size adapterInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup {
     NSString *strZoneId = info[@"zid"];
     int zoneId = [strZoneId intValue];
 
     if (zoneId <= 0) {
-        NSError *error = [VRTError errorWithCode:VRTErrorCodeInvalidParam format:@"Unusable zoneId of %i. Vrtcal ads require an Zone ID (unsigned int) to serve ads", zoneId];
-        [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:error];
+        NSError *error = [VRTError errorWithCode:VRTErrorCodeInvalidParam format:@"Unusable zoneId of %i. Vrtcal ads require a Zone ID (unsigned int) to serve ads", zoneId];
+        [self.delegate inlineAdAdapter:self didFailToLoadAdWithError:error];
         return;
     }
 
@@ -39,11 +44,11 @@
 #pragma mark - VRTBannerDelegate
 - (void)vrtBannerAdLoaded:(nonnull VRTBanner *)vrtBanner withAdSize:(CGSize)adSize {
     vrtBanner.frame = CGRectMake(0, 0, adSize.width, adSize.height);
-    [self.delegate bannerCustomEvent:self didLoadAd:self.vrtBanner];
+    [self.delegate inlineAdAdapter:self didLoadAdWithAdView:self.vrtBanner];
 }
 
 - (void)vrtBannerAdFailedToLoad:(nonnull VRTBanner *)vrtBanner error:(nonnull NSError *)error {
-    [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:error];
+    [self.delegate inlineAdAdapter:self didFailToLoadAdWithError:error];
 }
 
 - (void)vrtBannerAdClicked:(nonnull VRTBanner *)vrtBanner {
@@ -52,9 +57,9 @@
 
 - (void)vrtBannerWillPresentModal:(nonnull VRTBanner *)vrtBanner ofType:(VRTModalType)modalType {
     if (modalType == VRTModalTypeMraidExpand) {
-        [self.delegate bannerCustomEventWillExpandAd:self];
+        [self.delegate inlineAdAdapterWillExpand:self];
     } else {
-        [self.delegate bannerCustomEventWillBeginAction:self];
+        [self.delegate inlineAdAdapterWillBeginUserAction:self];
     }
 }
 
@@ -68,18 +73,18 @@
 
 - (void)vrtBannerDidDismissModal:(VRTBanner *)vrtBanner ofType:(VRTModalType)modalType {
     if (modalType == VRTModalTypeMraidExpand) {
-        [self.delegate bannerCustomEventDidCollapseAd:self];
+        [self.delegate inlineAdAdapterDidCollapse:self];
     } else {
-        [self.delegate bannerCustomEventDidFinishAction:self];
+        [self.delegate inlineAdAdapterDidEndUserAction:self];
     }
 }
 
 - (void)vrtBannerAdWillLeaveApplication:(nonnull VRTBanner *)vrtBanner {
-    [self.delegate bannerCustomEventWillLeaveApplication:self];
+    [self.delegate inlineAdAdapterWillLeaveApplication:self];
 }
 
 - (nonnull UIViewController *)vrtViewControllerForModalPresentation {
-    return self.delegate.viewControllerForPresentingModalView;
+    return [self.delegate inlineAdAdapterViewControllerForPresentingModalView:self];
 }
 
 @end
