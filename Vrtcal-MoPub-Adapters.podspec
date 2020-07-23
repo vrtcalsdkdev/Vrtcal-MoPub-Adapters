@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "Vrtcal-MoPub-Adapters"
-    s.version      = "1.0.7"
+    s.version      = "1.0.8"
     s.summary      = "Allows mediation with Vrtcal as either the primary or secondary SDK"
     s.homepage     = "http://vrtcal.com"
     s.license = { :type => 'Copyright', :text => <<-LICENSE
@@ -19,7 +19,4 @@ Pod::Spec.new do |s|
     s.dependency 'VrtcalSDK'
 
     s.static_framework = true
-    
-    #Allows `import Vrtcal_MoPub_Adapters`
-    s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES'}    
 end
