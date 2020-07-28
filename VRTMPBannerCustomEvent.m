@@ -5,7 +5,7 @@
 
 
 @interface VRTMPBannerCustomEvent() <VRTBannerDelegate>
-@property (strong, nonatomic) VRTBanner *vrtBanner;
+@property VRTBanner *vrtBanner;
 @end
 
 #pragma clang diagnostic push

@@ -5,7 +5,7 @@
 
 @interface VRTMPInterstitialCustomEvent() <VRTInterstitialDelegate>
 @property (weak) UIViewController *viewControllerForModalPresentation;
-@property (strong, nonatomic) VRTInterstitial *vrtInterstitial;
+@property VRTInterstitial *vrtInterstitial;
 @property BOOL vrtcalAdLoaded;
 @end
 
