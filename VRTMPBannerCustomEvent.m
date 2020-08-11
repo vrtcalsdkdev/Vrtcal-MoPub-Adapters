@@ -8,6 +8,7 @@
 @property VRTBanner *vrtBanner;
 @end
 
+//Ignore "Auto property synthesis will not synthesize property" warnings for delegate and localExtras.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-protocol-property-synthesis"
 @implementation VRTMPBannerCustomEvent
@@ -86,5 +87,10 @@
 - (nonnull UIViewController *)vrtViewControllerForModalPresentation {
     return [self.delegate inlineAdAdapterViewControllerForPresentingModalView:self];
 }
+
+- (void)vrtBannerVideoCompleted:(nonnull VRTBanner *)vrtBanner {
+    //MoPub does not offer an analog to this event
+}
+
 
 @end

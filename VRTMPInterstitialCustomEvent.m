@@ -9,6 +9,8 @@
 @property BOOL vrtcalAdLoaded;
 @end
 
+
+//Ignore "Auto property synthesis will not synthesize property" warnings for delegate, hasAdAvailable and localExtras.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-protocol-property-synthesis"
 @implementation VRTMPInterstitialCustomEvent
@@ -49,6 +51,16 @@
     self.viewControllerForModalPresentation = rootViewController;
     [self.vrtInterstitial showAd];
 }
+
+- (void)handleDidInvalidateAd {
+    //Though Vrtcal has internal caching, it doesn't respond to this event.
+}
+
+
+- (void)handleDidPlayAd {
+    //Vrtcal does not currently handle this event.
+}
+
 
 
 
@@ -95,6 +107,11 @@
 - (nonnull UIViewController *)vrtViewControllerForModalPresentation {
     return self.viewControllerForModalPresentation;
 }
+
+- (void)vrtInterstitialVideoCompleted:(nonnull VRTInterstitial *)vrtInterstitial {
+    //MoPub does not offer an analog to this event
+}
+
 
 
 @end
