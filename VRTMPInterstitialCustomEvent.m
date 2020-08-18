@@ -108,9 +108,16 @@
     return self.viewControllerForModalPresentation;
 }
 
+- (void)vrtInterstitialVideoStarted:(nonnull VRTInterstitial *)vrtInterstitial {
+    //MoPub does not offer an analog to this event
+}
+
 - (void)vrtInterstitialVideoCompleted:(nonnull VRTInterstitial *)vrtInterstitial {
     //MoPub does not offer an analog to this event
 }
+
+
+
 
 
 

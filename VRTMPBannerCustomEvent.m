@@ -88,9 +88,16 @@
     return [self.delegate inlineAdAdapterViewControllerForPresentingModalView:self];
 }
 
+- (void)vrtBannerVideoStarted:(nonnull VRTBanner *)vrtBanner {
+    //MoPub does not offer an analog to this event
+}
+
 - (void)vrtBannerVideoCompleted:(nonnull VRTBanner *)vrtBanner {
     //MoPub does not offer an analog to this event
 }
+
+
+
 
 
 @end
