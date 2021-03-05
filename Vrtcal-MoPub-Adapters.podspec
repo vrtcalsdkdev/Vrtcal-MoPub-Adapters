@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "Vrtcal-MoPub-Adapters"
-    s.version      = "1.0.10"
+    s.version      = "1.0.11"
     s.summary      = "Allows mediation with Vrtcal as either the primary or secondary SDK"
     s.homepage     = "http://vrtcal.com"
     s.license = { :type => 'Copyright', :text => <<-LICENSE
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
     s.platform = :ios
     s.ios.deployment_target  = '10.0'
 
-    s.dependency 'mopub-ios-sdk', '~> 5.13'
+    s.dependency 'mopub-ios-sdk', '~> 5.16'
     s.dependency 'VrtcalSDK'
 
     s.static_framework = true
