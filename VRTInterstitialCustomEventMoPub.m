@@ -51,12 +51,12 @@
     [self.customEventShowDelegate customEventShown];
 }
 
-- (void)interstitialWillDisappear:(MPInterstitialAdController *)interstitial {
+- (void)interstitialWillDismiss:(MPInterstitialAdController *)interstitial {
     VRTLogWhereAmI();
     [self.customEventShowDelegate customEventWillDismissModal:VRTModalTypeInterstitial];
 }
 
-- (void)interstitialDidDisappear:(MPInterstitialAdController *)interstitial {
+- (void)interstitialDidDismiss:(MPInterstitialAdController *)interstitial {
     VRTLogWhereAmI();
     [self.customEventShowDelegate customEventDidDismissModal:VRTModalTypeInterstitial];
 }
