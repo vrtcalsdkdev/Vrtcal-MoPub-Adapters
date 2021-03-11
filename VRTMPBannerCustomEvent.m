@@ -44,12 +44,16 @@
 
 #pragma mark - VRTBannerDelegate
 - (void)vrtBannerAdLoaded:(nonnull VRTBanner *)vrtBanner withAdSize:(CGSize)adSize {
-    vrtBanner.frame = CGRectMake(0, 0, adSize.width, adSize.height);
-    [self.delegate inlineAdAdapter:self didLoadAdWithAdView:self.vrtBanner];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        vrtBanner.frame = CGRectMake(0, 0, adSize.width, adSize.height);
+        [self.delegate inlineAdAdapter:self didLoadAdWithAdView:self.vrtBanner];
+    });
 }
 
 - (void)vrtBannerAdFailedToLoad:(nonnull VRTBanner *)vrtBanner error:(nonnull NSError *)error {
-    [self.delegate inlineAdAdapter:self didFailToLoadAdWithError:error];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate inlineAdAdapter:self didFailToLoadAdWithError:error];
+    });
 }
 
 - (void)vrtBannerAdClicked:(nonnull VRTBanner *)vrtBanner {
@@ -57,11 +61,13 @@
 }
 
 - (void)vrtBannerWillPresentModal:(nonnull VRTBanner *)vrtBanner ofType:(VRTModalType)modalType {
-    if (modalType == VRTModalTypeMraidExpand) {
-        [self.delegate inlineAdAdapterWillExpand:self];
-    } else {
-        [self.delegate inlineAdAdapterWillBeginUserAction:self];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (modalType == VRTModalTypeMraidExpand) {
+            [self.delegate inlineAdAdapterWillExpand:self];
+        } else {
+            [self.delegate inlineAdAdapterWillBeginUserAction:self];
+        }
+    });
 }
 
 - (void)vrtBannerDidPresentModal:(nonnull VRTBanner *)vrtBanner ofType:(VRTModalType)modalType {
@@ -73,15 +79,19 @@
 }
 
 - (void)vrtBannerDidDismissModal:(VRTBanner *)vrtBanner ofType:(VRTModalType)modalType {
-    if (modalType == VRTModalTypeMraidExpand) {
-        [self.delegate inlineAdAdapterDidCollapse:self];
-    } else {
-        [self.delegate inlineAdAdapterDidEndUserAction:self];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (modalType == VRTModalTypeMraidExpand) {
+            [self.delegate inlineAdAdapterDidCollapse:self];
+        } else {
+            [self.delegate inlineAdAdapterDidEndUserAction:self];
+        }
+    });
 }
 
 - (void)vrtBannerAdWillLeaveApplication:(nonnull VRTBanner *)vrtBanner {
-    [self.delegate inlineAdAdapterWillLeaveApplication:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate inlineAdAdapterWillLeaveApplication:self];
+    });
 }
 
 - (nonnull UIViewController *)vrtViewControllerForModalPresentation {

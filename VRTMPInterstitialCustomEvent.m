@@ -66,43 +66,61 @@
 
 #pragma mark - VRTInterstitialDelegate
 - (void)vrtInterstitialAdLoaded:(nonnull VRTInterstitial *)vrtInterstitial {
-    self.vrtcalAdLoaded = YES;
-    [self.delegate fullscreenAdAdapterDidLoadAd:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.vrtcalAdLoaded = YES;
+        [self.delegate fullscreenAdAdapterDidLoadAd:self];
+    });
 }
 
 - (void)vrtInterstitialAdFailedToLoad:(nonnull VRTInterstitial *)vrtInterstitial error:(nonnull NSError *)error {
-    self.vrtcalAdLoaded = NO;
-    [self.delegate fullscreenAdAdapter:self didFailToLoadAdWithError:error];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.vrtcalAdLoaded = NO;
+        [self.delegate fullscreenAdAdapter:self didFailToLoadAdWithError:error];
+    });
 }
 
 - (void)vrtInterstitialAdWillShow:(nonnull VRTInterstitial *)vrtInterstitial {
-    [self.delegate fullscreenAdAdapterAdWillAppear:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate fullscreenAdAdapterAdWillAppear:self];
+    });
 }
 
 - (void)vrtInterstitialAdDidShow:(nonnull VRTInterstitial *)vrtInterstitial {
-    [self.delegate fullscreenAdAdapterAdDidAppear:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate fullscreenAdAdapterAdDidAppear:self];
+    });
 }
 
 - (void)vrtInterstitialAdFailedToShow:(nonnull VRTInterstitial *)vrtInterstitial error:(nonnull NSError *)error {
-    [self.delegate fullscreenAdAdapter:self didFailToShowAdWithError:error];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate fullscreenAdAdapter:self didFailToShowAdWithError:error];
+    });
 }
 
 - (void)vrtInterstitialAdClicked:(nonnull VRTInterstitial *)vrtInterstitial {
-    [self.delegate fullscreenAdAdapterDidReceiveTap:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate fullscreenAdAdapterDidReceiveTap:self];
+    });
 }
 
 -(void)vrtInterstitialAdWillLeaveApplication:(nonnull VRTInterstitial*)vrtInterstitial {
-    [self.delegate fullscreenAdAdapterWillLeaveApplication:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate fullscreenAdAdapterWillLeaveApplication:self];
+    });
 }
 
 - (void)vrtInterstitialAdWillDismiss:(nonnull VRTInterstitial *)vrtInterstitial {
-    [self.delegate fullscreenAdAdapterAdWillDisappear:self];
-    [self.delegate fullscreenAdAdapterAdWillDismiss:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate fullscreenAdAdapterAdWillDisappear:self];
+        [self.delegate fullscreenAdAdapterAdWillDismiss:self];
+    });
 }
 
 - (void)vrtInterstitialAdDidDismiss:(nonnull VRTInterstitial *)vrtInterstitial {
-    [self.delegate fullscreenAdAdapterAdDidDisappear:self];
-    [self.delegate fullscreenAdAdapterAdDidDismiss:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate fullscreenAdAdapterAdDidDisappear:self];
+        [self.delegate fullscreenAdAdapterAdDidDismiss:self];
+    });
 }
 
 
