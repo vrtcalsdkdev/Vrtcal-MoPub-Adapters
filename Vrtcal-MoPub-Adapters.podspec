@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
     s.platform = :ios
     s.ios.deployment_target  = '10.0'
 
-    s.dependency 'mopub-ios-sdk', '~> 5.16'
+    s.dependency 'mopub-ios-sdk', '~> 5.13'
     s.dependency 'VrtcalSDK'
 
     s.static_framework = true
