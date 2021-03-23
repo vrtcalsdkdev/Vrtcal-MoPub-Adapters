@@ -19,7 +19,14 @@
 
 - (void) loadBannerAd {
     NSString *moPubAdUnitId = [self.customEventConfig.thirdPartyCustomEventData objectForKey:@"adUnitId"];
+    NSString *strWidth = [self.customEventConfig.thirdPartyCustomEventData objectForKey:@"width"];
+    NSString *strHeight = [self.customEventConfig.thirdPartyCustomEventData objectForKey:@"height"];
+    
+    CGFloat width = [strWidth respondsToSelector:@selector(floatValue)] ? [strWidth floatValue] : 0;
+    CGFloat height = [strWidth respondsToSelector:@selector(floatValue)] ? [strHeight floatValue] : 0;
+    
     self.mpAdView = [[MPAdView alloc] initWithAdUnitId:moPubAdUnitId];
+    self.mpAdView.frame = CGRectMake(0, 0, width, height);
     self.mpAdView.delegate = self;
     [self.mpAdView loadAd];
 }
