@@ -48,6 +48,7 @@
 
 - (void)interstitialDidAppear:(MPInterstitialAdController *)interstitial {
     VRTLogWhereAmI();
+    [self.customEventShowDelegate customEventDidPresentModal:VRTModalTypeInterstitial];
     [self.customEventShowDelegate customEventShown];
 }
 
