@@ -81,12 +81,14 @@
 
 - (void)vrtInterstitialAdWillShow:(nonnull VRTInterstitial *)vrtInterstitial {
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate fullscreenAdAdapterAdWillPresent:self];
         [self.delegate fullscreenAdAdapterAdWillAppear:self];
     });
 }
 
 - (void)vrtInterstitialAdDidShow:(nonnull VRTInterstitial *)vrtInterstitial {
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate fullscreenAdAdapterAdDidPresent:self];
         [self.delegate fullscreenAdAdapterAdDidAppear:self];
     });
 }
